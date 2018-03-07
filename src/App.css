@@ -109,6 +109,7 @@
 .Message-content {
   font-size: 16px;
   padding: 3px 0;
+  font-weight: lighter;
 }
 
 .Message-wrapper {
