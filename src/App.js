@@ -21,14 +21,14 @@ class App extends Component {
   }
 
   initWebSocket = () => {
-    this.websocket = new WebSocket("ws://localhost:8080");
+    this.websocket = new WebSocket("ws://139.162.254.62/ws2");
     this.websocket.onmessage = this.handleMessage;
     this.websocket.onerror = this.handleError;
     this.websocket.onclose = this.handleOnClose;
   };
 
   getMessages = async () => {
-    const { data } = await axios.get("http://localhost:3001/api/messages");
+    const { data } = await axios.get("http://139.162.254.62/jodel/api/messages");
     console.log(data);
     this.setState({ messages: data });
   };
