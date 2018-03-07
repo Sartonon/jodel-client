@@ -1,0 +1,131 @@
+.App {
+  text-align: center;
+  height: 100%;
+  background-size: cover;
+  background-color: orange;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  padding: 5px;
+  color: black;
+  height: 60px;
+  box-sizing: border-box;
+  background-color: white;
+  border-bottom: 1px solid lightgrey;
+  box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
+}
+
+.App-title {
+  font-size: 18px;
+  line-height: 26px;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+.Ok-button {
+  background-color: #003654;
+  margin: 5px 0;
+  padding: 5px;
+  color: white;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 2px;
+}
+
+.Chat-window {
+  margin: 0 5px;;
+  margin: auto;
+  position: relative;
+  background-size: cover;
+  height: calc(100% - 60px);
+}
+
+.Chat-input {
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 15px;
+  background-color: #9B6500;
+  height: 60px;
+}
+
+.Chat-input-wrapper {
+  padding: 10px;
+}
+
+.Login-input {
+  width: 100%;
+  height: 30px;
+  font-size: 16px;
+  box-sizing: border-box;
+  border: 1px solid black;
+  border-radius: 2px;
+}
+
+.Chat-inputfield {
+  flex: 4;
+  font-size: 16px;
+  border-radius: 3px;
+  padding-left: 10px;
+  background-color: #FFC864;
+  border: none;
+}
+
+.Send-button {
+  flex: 1;
+  color: white;
+  background-color: red;
+  line-height: 30px;
+  cursor: pointer;
+  border-radius: 3px;
+  margin-left: 5px;
+}
+
+.Login-div {
+  width: 200px;
+  margin: auto;
+}
+
+.Message-block {
+  text-align: left;
+  border-radius: 3px;
+  padding: 12px;
+  box-sizing: border-box;
+}
+
+.Message-name {
+  font-weight: bold;
+  font-size: 14px;
+
+}
+
+.Message-content {
+  font-size: 16px;
+  padding: 3px 0;
+}
+
+.Message-wrapper {
+  overflow: auto;
+  height: 150px;
+  width: 100%;
+  border-bottom: 3px solid white;
+}
+
+.Message-div {
+  height: calc(100% - 60px);
+  overflow: auto;
+  max-width: 500px;
+  margin: auto;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
