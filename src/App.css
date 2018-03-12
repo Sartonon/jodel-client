@@ -124,6 +124,7 @@
   overflow: auto;
   max-width: 500px;
   margin: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 @keyframes App-logo-spin {
