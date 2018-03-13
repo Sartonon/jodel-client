@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import upIcon from './icons/ic_thumb_up_black_24px.svg';
+import downIcon from './icons/ic_thumb_down_black_24px.svg';
 import './App.css';
 
 function getRandomInt(max) {
@@ -43,12 +45,26 @@ class App extends Component {
   };
 
   handleMessage = (e) => {
-    this.setState({ messages: [ JSON.parse(e.data), ...this.state.messages ] });
+    const data = JSON.parse(e.data);
+    console.log(data);
+    if (data.type === "jodel") {
+      this.setState({ messages: [ data, ...this.state.messages ] });
+    } else if (data.type === "vote") {
+      this.setState({
+        messages: this.state.messages.map(m => {
+          if (m.id === data.data.id) {
+            return data.data;
+          }
+          return m;
+        })
+      });
+    }
   };
 
   sendMessage = (e) => {
     e.preventDefault();
     this.websocket.send(JSON.stringify({
+      type: 'jodel',
       name: this.state.username,
       message: this.state.message,
       color: `rgb(${getRandomInt(255)}, ${getRandomInt(255)}, ${getRandomInt(255)})`,
@@ -60,20 +76,49 @@ class App extends Component {
     this.setState({ message: e.target.value });
   };
 
+  voteUp = (id) => {
+    this.websocket.send(JSON.stringify({
+      type: 'upvote',
+      id
+    }));
+  };
+
+  voteDown = (id) => {
+    this.websocket.send(JSON.stringify({
+      type: 'downvote',
+      id
+    }));
+  };
+
   renderMessages = () => {
-    return this.state.messages.map((message, i) => {
+    console.log("moi");
+    return this.state.messages.map(message => {
       return (
-        <div className="Message-wrapper" key={i} style={{ backgroundColor: message.color }}>
-          <div
-            className="Message-block"
-            style={{
-              color: "white"
-            }}
-          >
-            <div className="Message-name">
-              {message.name}
+        <div className="Message-wrapper" key={message.id} style={{ backgroundColor: message.color }}>
+          <div className="Block-wrapper">
+            <div
+              className="Message-block"
+              style={{
+                color: "white"
+              }}
+            >
+              <div className="Message-name">
+                {message.name}
+              </div>
+              <div className="Message-content">{message.message}</div>
             </div>
-            <div className="Message-content">{message.message}</div>
+            <div className="Message-vote">
+              <img src={upIcon} alt="up" onClick={() => this.voteUp(message.id)} />
+              <div style={{ color: "white", fontSize: "20px" }}>{message.votes}</div>
+              <img
+                src={downIcon}
+                style={{
+                  marginTop: '3px'
+                }}
+                alt="down"
+                onClick={() => this.voteDown(message.id)}
+              />
+            </div>
           </div>
         </div>
       );
