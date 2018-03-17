@@ -124,6 +124,7 @@
 .Message-vote {
   align-self: center;
   margin-right: 15px;
+  text-align: center;
 }
 
 .Clock-icon {
