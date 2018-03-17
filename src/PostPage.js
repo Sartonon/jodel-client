@@ -10,7 +10,7 @@ class PostPage extends Component {
   async componentDidMount() {
     console.log(this.props);
     const data = await axios.get(
-      `http://localhost:3010/api/messages/${this.props.match.params.id}`,
+      `http://139.162.254.62/jodel/api/messages/${this.props.match.params.id}`,
     );
     console.log(data);
     this.setState({ post: data.data });
