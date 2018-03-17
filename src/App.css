@@ -94,16 +94,29 @@
 }
 
 .Message-block {
+  font-weight: lighter;
   text-align: left;
   border-radius: 3px;
-  padding: 12px;
+  padding: 6px 12px;
   box-sizing: border-box;
   flex: 1;
 }
 
 .Block-wrapper {
   display: flex;
-  height: 100%;
+  min-height: 150px;
+}
+
+.Message-quote {
+  margin-top: 20px;
+  padding-bottom: 15px;
+  font-size: 12px;
+}
+
+.Message-time {
+  text-align: left;
+  color: white;
+  font-size: 12px;
 }
 
 .Message-vote {
@@ -111,21 +124,27 @@
   margin-right: 15px;
 }
 
+.Clock-icon {
+  vertical-align: middle;
+  width: 17px;
+  margin-right: 3px;
+}
+
 .Message-name {
   font-weight: bold;
   font-size: 14px;
-
 }
 
 .Message-content {
   font-size: 16px;
-  padding: 3px 0;
-  font-weight: lighter;
+  padding-top: 8px;
+  min-height: 60px;
+  font-weight: normal;
 }
 
 .Message-wrapper {
   overflow: auto;
-  height: 150px;
+  min-height: 150px;
   width: 100%;
   border-bottom: 3px solid white;
 }
