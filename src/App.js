@@ -26,14 +26,14 @@ class JodelWall extends Component {
   }
 
   initWebSocket = () => {
-    this.websocket = new WebSocket('ws://localhost:8081/');
+    this.websocket = new WebSocket("ws://139.162.254.62/ws2");
     this.websocket.onmessage = this.handleMessage;
     this.websocket.onerror = this.handleError;
     this.websocket.onclose = this.handleOnClose;
   };
 
   getMessages = async () => {
-    const { data } = await axios.get('http://localhost:3010/api/messages');
+    const { data } = await axios.get("http://139.162.254.62/jodel/api/messages");
     this.setState({ messages: data });
   };
 
