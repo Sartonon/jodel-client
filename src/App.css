@@ -43,8 +43,8 @@
   margin: 0 5px;;
   margin: auto;
   position: relative;
-  background-size: cover;
-  height: calc(100% - 60px);
+  background-color: orange;
+  padding-bottom: 55px;
 }
 
 .Chat-input {
@@ -54,6 +54,8 @@
   padding: 15px;
   background-color: #9B6500;
   height: 60px;
+  position: fixed;
+  bottom: 0;
 }
 
 .Chat-input-wrapper {
@@ -150,11 +152,9 @@
 }
 
 .Message-div {
-  height: calc(100% - 60px);
-  overflow: auto;
   max-width: 500px;
   margin: auto;
-  -webkit-overflow-scrolling: touch;
+  box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
 }
 
 @keyframes App-logo-spin {

@@ -18,6 +18,7 @@ class JodelWall extends Component {
     usernameConfirmed: false,
     message: '',
     color: 0,
+    userAmount: 0,
   };
 
   async componentDidMount() {
@@ -26,14 +27,14 @@ class JodelWall extends Component {
   }
 
   initWebSocket = () => {
-    this.websocket = new WebSocket("ws://139.162.254.62/ws2");
+    this.websocket = new WebSocket('ws://localhost:8081/');
     this.websocket.onmessage = this.handleMessage;
     this.websocket.onerror = this.handleError;
     this.websocket.onclose = this.handleOnClose;
   };
 
   getMessages = async () => {
-    const { data } = await axios.get("http://139.162.254.62/jodel/api/messages");
+    const { data } = await axios.get('http://localhost:3010/api/messages');
     this.setState({ messages: data });
   };
 
@@ -57,6 +58,10 @@ class JodelWall extends Component {
           }
           return m;
         }),
+      });
+    } else if (data.type === 'userAmount') {
+      this.setState({
+        userAmount: data.amount,
       });
     }
   };
@@ -118,14 +123,16 @@ class JodelWall extends Component {
             >
               <div className="Message-time">
                 <img className="Clock-icon" src={clockIcon} alt="clock" />
-                <span>
-                  {message.time}
-                </span>
+                <span>{message.time}</span>
               </div>
               <div className="Message-content">{message.message}</div>
               {message.quoteText ? (
-                <div className="Message-quote">{`"${message.quoteText}"`} - {message.quoteAuthor}</div>
-              ) : <div className="Message-quote">Ei lainausta tällä kertaa.</div>}
+                <div className="Message-quote">
+                  {`"${message.quoteText}"`} - {message.quoteAuthor}
+                </div>
+              ) : (
+                <div className="Message-quote">Ei lainausta tällä kertaa.</div>
+              )}
             </div>
             <div className="Message-vote">
               <img
@@ -160,8 +167,13 @@ class JodelWall extends Component {
   };
 
   render() {
+    const { userAmount } = this.state;
+
     return (
       <div className="App">
+        <header className="App-header">
+          <h1 className="App-title">Jodel ({userAmount})</h1>
+        </header>
         <div className="Chat-window">
           <div id="chatwindow" className="Message-div">
             {this.renderMessages()}
@@ -190,10 +202,7 @@ const Post = props => {
 const App = () => {
   return (
     <Router>
-      <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Jodel</h1>
-        </header>
+      <div style={{ height: '100%' }}>
         <Route exact path="/" component={JodelWall} />
         <Route exact path="/post/:id" component={Post} />
       </div>
